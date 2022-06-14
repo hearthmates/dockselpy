@@ -45,6 +45,7 @@ def firefox_example():
     firefox_options = firefox.options.Options()
     firefox_options.headless = True
     firefox_options.add_argument('--no-sandbox')
+    firefox_options.binary_location = '/usr/bin/firefox'
     firefox_options.set_preference('browser.download.folderList', 2)
     firefox_options.set_preference(
         'browser.download.manager.showWhenStarting', False
