@@ -56,7 +56,7 @@ def firefox_example():
 
     logging.info('Prepared firefox profile..')
 
-    browser = webdriver.Firefox(options=firefox_options)
+    browser = webdriver.Firefox(options=firefox_options, executable_path='/usr/local/bin/geckodriver')
     logging.info('Initialized firefox browser..')
 
     browser.get(BASE_URL)
