@@ -1,4 +1,5 @@
 ## dockselpy
+[![Dockselpy Stability Check](https://github.com/hearthmates/dockselpy/actions/workflows/cron.yml/badge.svg)](https://github.com/hearthmates/dockselpy/actions/workflows/cron.yml)
 
 Docker container for running Selenium tasks using Python and the latest Chrome and Firefox drivers.
 
