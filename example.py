@@ -45,7 +45,6 @@ def firefox_example():
     firefox_options = firefox.options.Options()
     firefox_options.headless = True
     firefox_options.add_argument('--no-sandbox')
-    firefox_options.add_argument('--disable-dev-shm-usage')
     firefox_options.set_preference('browser.download.folderList', 2)
     firefox_options.set_preference(
         'browser.download.manager.showWhenStarting', False
