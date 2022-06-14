@@ -1,0 +1,5 @@
+name: 'dockselpy test'
+description: 'Run example script'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

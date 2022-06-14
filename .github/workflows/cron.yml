@@ -1,0 +1,16 @@
+name: Dockselpy Stability Check
+
+on:
+  push:  # run every time we push
+  schedule:
+    - cron: '0 0 1 * *'  # run at least once every month as a precaution
+
+jobs:
+  run-stability-check:
+    runs-on: ubuntu-latest
+    name: Run Stability Check
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Run Github Action
+        uses: ./
