@@ -48,4 +48,6 @@ WORKDIR /usr/src/app/
 
 COPY example.py example.py
 
+EXPOSE 4444
+
 CMD ./example.py
