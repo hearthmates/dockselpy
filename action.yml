@@ -3,3 +3,5 @@ description: 'Run example script'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  ports:
+    - 4444:4444
