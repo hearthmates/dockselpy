@@ -21,7 +21,7 @@ The image is build with the following dependencies:
 - docker
     ```
     docker build -t dockselpy .
-    docker run --privileged -p 4000:4000 -d -it dockselpy
+    docker run --privileged -p 4444:4444 -d -it dockselpy
     ```
 
 - docker-compose

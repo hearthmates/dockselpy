@@ -71,4 +71,4 @@ def firefox_example():
 
 if __name__ == '__main__':
     chrome_example()
-    firefox_example()  # runs normally in a docker container but Github Actions is having some trouble with it
+    # firefox_example()  # runs normally in a docker container but Github Actions is having some trouble with it
