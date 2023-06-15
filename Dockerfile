@@ -9,12 +9,7 @@ RUN apt-get update && apt-get install -y \
     curl unzip wget \
     xvfb libgbm1
 
-# install geckodriver and firefox
-RUN GECKODRIVER_VERSION=`curl -L https://github.com/mozilla/geckodriver/releases/latest | grep -Pom1 'v[0-9]+.[0-9]+.[0-9]+'` && \
-    wget https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz && \
-    tar -zxf geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz -C /usr/bin && \
-    chmod +x /usr/bin/geckodriver && \
-    rm geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
+# install firefox
 
 RUN FIREFOX_SETUP=firefox-setup.tar.bz2 && \
     apt-get purge firefox && \
@@ -23,13 +18,7 @@ RUN FIREFOX_SETUP=firefox-setup.tar.bz2 && \
     ln -s /opt/firefox/firefox /usr/bin/firefox && \
     rm $FIREFOX_SETUP
 
-# install chromedriver and google-chrome
-RUN CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
-    wget https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
-    unzip chromedriver_linux64.zip -d /usr/bin && \
-    chmod +x /usr/bin/chromedriver && \
-    rm chromedriver_linux64.zip
-
+# install google-chrome
 RUN CHROME_SETUP=google-chrome.deb && \
     wget -O $CHROME_SETUP "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" && \
     dpkg -i $CHROME_SETUP && \
@@ -39,6 +28,7 @@ RUN CHROME_SETUP=google-chrome.deb && \
 # install python dependencies
 RUN pip3 install selenium
 RUN pip3 install pyvirtualdisplay
+RUN pip3 install webdriver-manager
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -47,6 +37,9 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /usr/src/app/
 
 COPY example.py example.py
+COPY install_webdrivers.py install_webdrivers.py
+
+RUN python3 install_webdrivers.py
 
 EXPOSE 4444
 

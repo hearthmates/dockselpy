@@ -5,6 +5,10 @@ import logging
 from pyvirtualdisplay import Display
 from selenium import webdriver
 from selenium.webdriver import firefox
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 
 logging.getLogger().setLevel(logging.INFO)
 
@@ -25,7 +29,7 @@ def chrome_example():
     })
     logging.info('Prepared chrome options..')
 
-    browser = webdriver.Chrome(options=chrome_options)
+    browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
     logging.info('Initialized chrome browser..')
 
     browser.get(BASE_URL)
@@ -57,7 +61,7 @@ def firefox_example():
 
     logging.info('Prepared firefox profile..')
 
-    browser = webdriver.Firefox(options=firefox_options)
+    browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=firefox_options)
     logging.info('Initialized firefox browser..')
 
     browser.get(BASE_URL)
