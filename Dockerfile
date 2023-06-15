@@ -3,7 +3,7 @@ FROM ubuntu:latest
 # install system dependencies
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
-    python3 python3-pip \
+    python3 python3-pip python3.10-venv \
     fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libu2f-udev \
     libnspr4 libnss3 lsb-release xdg-utils libxss1 libdbus-glib-1-2 libvulkan1 \
     curl unzip wget \
@@ -26,6 +26,10 @@ RUN CHROME_SETUP=google-chrome.deb && \
     rm $CHROME_SETUP
 
 # install python dependencies
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 RUN pip3 install selenium
 RUN pip3 install pyvirtualdisplay
 RUN pip3 install webdriver-manager
