@@ -17,6 +17,7 @@ def chrome_example():
     logging.info('Initialized virtual display..')
 
     chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('-headless')
     chrome_options.add_argument('--no-sandbox')
 
     chrome_options.add_experimental_option('prefs', {
@@ -43,7 +44,7 @@ def firefox_example():
     logging.info('Initialized virtual display..')
 
     firefox_options = firefox.options.Options()
-    firefox_options.headless = True
+    firefox_options.add_argument('-headless')
     firefox_options.add_argument('--no-sandbox')
     firefox_options.binary_location = '/usr/bin/firefox'
     firefox_options.set_preference('browser.download.folderList', 2)
@@ -57,7 +58,7 @@ def firefox_example():
 
     logging.info('Prepared firefox profile..')
 
-    browser = webdriver.Firefox(options=firefox_options, executable_path='/usr/local/bin/geckodriver')
+    browser = webdriver.Firefox(options=firefox_options)
     logging.info('Initialized firefox browser..')
 
     browser.get(BASE_URL)
@@ -71,4 +72,4 @@ def firefox_example():
 
 if __name__ == '__main__':
     chrome_example()
-    # firefox_example()  # runs normally in a docker container but Github Actions is having some trouble with it
+    firefox_example()  # runs normally in a docker container but Github Actions is having some trouble with it

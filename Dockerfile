@@ -4,16 +4,16 @@ FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     python3 python3-pip \
-    fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 \
-    libnspr4 libnss3 lsb-release xdg-utils libxss1 libdbus-glib-1-2 \
+    fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libu2f-udev \
+    libnspr4 libnss3 lsb-release xdg-utils libxss1 libdbus-glib-1-2 libvulkan1 \
     curl unzip wget \
     xvfb libgbm1
 
 # install geckodriver and firefox
 RUN GECKODRIVER_VERSION=`curl -L https://github.com/mozilla/geckodriver/releases/latest | grep -Pom1 'v[0-9]+.[0-9]+.[0-9]+'` && \
     wget https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz && \
-    tar -zxf geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz -C /usr/local/bin && \
-    chmod +x /usr/local/bin/geckodriver && \
+    tar -zxf geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz -C /usr/bin && \
+    chmod +x /usr/bin/geckodriver && \
     rm geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
 
 RUN FIREFOX_SETUP=firefox-setup.tar.bz2 && \
