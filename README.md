@@ -42,3 +42,23 @@ The image is build with the following dependencies:
 ### Example Script
 
 A simple python script demonstrating on how to start selenium using Firefox with custom profile or Google Chrome with desired options is provided in the source.
+
+Note that firefox binary is located at `/opt/firefox/firefox`
+
+- To start a firefox driver in your project:
+    ```python
+    # for firefox
+    from selenium.webdriver import firefox
+    from webdriver_manager.firefox import GeckoDriverManager
+    from selenium.webdriver.firefox.service import Service as FirefoxService
+    
+    firefox_options = firefox.options.Options()
+    firefox_options.binary_location = '/opt/firefox/firefox'
+    browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=firefox_options)
+    
+    # for chrome
+    from webdriver_manager.chrome import ChromeDriverManager
+    from selenium.webdriver.chrome.service import Service as ChromeService
+    browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+    ```
+

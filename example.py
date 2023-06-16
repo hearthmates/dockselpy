@@ -49,7 +49,7 @@ def firefox_example():
     firefox_options = firefox.options.Options()
     firefox_options.add_argument('-headless')
     firefox_options.add_argument('--no-sandbox')
-    firefox_options.binary_location = '/usr/bin/firefox'
+    firefox_options.binary_location = '/opt/firefox/firefox'
     firefox_options.set_preference('browser.download.folderList', 2)
     firefox_options.set_preference(
         'browser.download.manager.showWhenStarting', False
@@ -75,4 +75,4 @@ def firefox_example():
 
 if __name__ == '__main__':
     chrome_example()
-    # firefox_example()  # runs normally in a docker container but Github Actions is having some trouble with it
+    firefox_example()  # runs normally in a docker container but Github Actions is having some trouble with it
